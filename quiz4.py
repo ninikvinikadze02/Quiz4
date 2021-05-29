@@ -11,9 +11,8 @@ file = open('movie.csv', 'w', encoding='UTF-8_sig', newline='\n')
 csv_file = csv.writer(file)
 csv_file.writerow(['სახელი', 'წელი', 'რეიტინგი'])
 
-url = f'https://movie.ge/filter-movies?type=movie&page={ind}'
 for i in range(6):
-
+    url = f'https://movie.ge/filter-movies?type=movie&page={ind}'
     r = requests.get(url)
     # print(r.status_code)
     content = r.text
@@ -34,9 +33,8 @@ for i in range(6):
         year_div = rates.find('div', class_='year')
         year = year_div.text
         csv_file.writerow([title, year, imdb])
-        ind += 1
         print(year)
+    ind += 1
     sleep(randint(15,20))
 
 file.close()
-
